@@ -1,5 +1,7 @@
 import type { Metadata } from 'next';
 import { Geist, Geist_Mono } from 'next/font/google';
+import { StoreProvider } from '@/app/providers/store-provider';
+import { WebsocketProvider } from '@/app/providers/websocket-provider';
 import './globals.css';
 
 const geistSans = Geist({
@@ -27,7 +29,11 @@ export default function RootLayout({
       <body
         className={`${geistSans.variable} ${geistMono.variable} antialiased`}
       >
-        {children}
+        <StoreProvider>
+          <WebsocketProvider>
+            <main className="max-w-7xl mx-auto py-6 px-4">{children}</main>
+          </WebsocketProvider>
+        </StoreProvider>
       </body>
     </html>
   );
