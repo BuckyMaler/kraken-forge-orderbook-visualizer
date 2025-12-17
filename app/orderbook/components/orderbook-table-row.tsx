@@ -1,5 +1,3 @@
-import { TableRow, TableCell } from '@/components/ui/table';
-
 export interface OrderBookTableRowProps {
   row: { price: string; qty: string; total: string };
   type: 'bids' | 'asks';
@@ -12,32 +10,32 @@ export function OrderBookTableRow({
   maxTotal,
 }: OrderBookTableRowProps) {
   return (
-    <TableRow className="relative border-transparent [&_td]:text-right [&_td]:text-xs [&_td]:font-medium">
+    <div className="relative grid grid-cols-3 border-b border-transparent [&_div]:p-2 [&_div]:text-right [&_div]:text-xs [&_div]:font-medium">
       {type === 'bids' ? (
         <>
-          <TableCell>{row.total}</TableCell>
-          <TableCell>{row.qty}</TableCell>
-          <TableCell className="text-green-700">{row.price}</TableCell>
-          <TableCell
+          <div>{row.total}</div>
+          <div>{row.qty}</div>
+          <div className="text-green-700">{row.price}</div>
+          <div
             className="absolute left-0 top-0 size-full origin-right bg-green-700 opacity-25"
             style={{
               transform: `scaleX(${Number(row.total) / Number(maxTotal)})`,
             }}
-          ></TableCell>
+          ></div>
         </>
       ) : (
         <>
-          <TableCell className="text-red-700">{row.price}</TableCell>
-          <TableCell>{row.qty}</TableCell>
-          <TableCell>{row.total}</TableCell>
-          <TableCell
+          <div className="text-red-700">{row.price}</div>
+          <div>{row.qty}</div>
+          <div>{row.total}</div>
+          <div
             className="absolute left-0 top-0 size-full origin-left bg-red-700 opacity-25"
             style={{
               transform: `scaleX(${Number(row.total) / Number(maxTotal)})`,
             }}
-          ></TableCell>
+          ></div>
         </>
       )}
-    </TableRow>
+    </div>
   );
 }

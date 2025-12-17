@@ -3,13 +3,6 @@ import {
   OrderBookTableRowProps,
 } from '@/app/orderbook/components/orderbook-table-row';
 import { OrderBookTableSkeleton } from '@/app/orderbook/components/orderbook-table-skeleton';
-import {
-  Table,
-  TableHeader,
-  TableRow,
-  TableHead,
-  TableBody,
-} from '@/components/ui/table';
 
 interface OrderBookTableProps {
   rows: Array<OrderBookTableRowProps['row']>;
@@ -23,25 +16,25 @@ export function OrderBookTable({
   snapshotReceived,
 }: OrderBookTableProps) {
   return (
-    <Table>
-      <TableHeader className="[&_tr]:border-none">
-        <TableRow className="[&_th]:w-1/3 [&_th]:text-right [&_th]:text-xs [&_th]:uppercase [&_th]:text-gray-500">
+    <div>
+      <div>
+        <div className="grid grid-cols-3 [&_div]:flex [&_div]:items-center [&_div]:justify-end [&_div]:h-10 [&_div]:px-2 [&_div]:text-xs [&_div]:font-medium [&_div]:uppercase [&_div]:text-gray-500">
           {type === 'bids' ? (
             <>
-              <TableHead>Total</TableHead>
-              <TableHead>Quantity</TableHead>
-              <TableHead>Price</TableHead>
+              <div>Total</div>
+              <div>Quantity</div>
+              <div>Price</div>
             </>
           ) : (
             <>
-              <TableHead>Price</TableHead>
-              <TableHead>Quantity</TableHead>
-              <TableHead>Total</TableHead>
+              <div>Price</div>
+              <div>Quantity</div>
+              <div>Total</div>
             </>
           )}
-        </TableRow>
-      </TableHeader>
-      <TableBody>
+        </div>
+      </div>
+      <div>
         {!snapshotReceived
           ? Array.from({ length: 10 }).map((_, index) => (
               <OrderBookTableSkeleton key={index} type={type} />
@@ -54,7 +47,7 @@ export function OrderBookTable({
                 maxTotal={rows[rows.length - 1].total}
               />
             ))}
-      </TableBody>
-    </Table>
+      </div>
+    </div>
   );
 }
