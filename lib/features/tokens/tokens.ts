@@ -1,4 +1,11 @@
-export const TOKENS = [
+export interface Token {
+  symbol: string;
+  pairDecimals: number;
+  lotDecimals: number;
+  iconUrl: string;
+}
+
+export const TOKENS: Array<Token> = [
   {
     symbol: 'BTC/USD',
     pairDecimals: 1,

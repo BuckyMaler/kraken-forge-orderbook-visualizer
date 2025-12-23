@@ -1,20 +1,11 @@
-import {
-  OrderBookTableRow,
-  OrderBookTableRowProps,
-} from '@/app/orderbook/components/orderbook-table-row';
-import { OrderBookTableSkeleton } from '@/app/orderbook/components/orderbook-table-skeleton';
+import { Skeleton } from '@/components/ui/skeleton';
 
 interface OrderBookTableProps {
-  rows: Array<OrderBookTableRowProps['row']>;
+  readonly children: React.ReactNode;
   type: OrderBookTableRowProps['type'];
-  snapshotReceived: boolean;
 }
 
-export function OrderBookTable({
-  rows,
-  type,
-  snapshotReceived,
-}: OrderBookTableProps) {
+export function OrderBookTable({ children, type }: OrderBookTableProps) {
   return (
     <div>
       <div>
@@ -34,20 +25,85 @@ export function OrderBookTable({
           )}
         </div>
       </div>
-      <div>
-        {!snapshotReceived
-          ? Array.from({ length: 10 }).map((_, index) => (
-              <OrderBookTableSkeleton key={index} type={type} />
-            ))
-          : rows.map((row, index) => (
-              <OrderBookTableRow
-                key={index}
-                row={row}
-                type={type}
-                maxTotal={rows[rows.length - 1].total}
-              />
-            ))}
-      </div>
+      <div>{children}</div>
+    </div>
+  );
+}
+
+export interface OrderBookTableRowProps {
+  row: { price: string; qty: string; total: string };
+  type: 'bids' | 'asks';
+  maxTotal: string;
+}
+
+export function OrderBookTableRow({
+  row,
+  type,
+  maxTotal,
+}: OrderBookTableRowProps) {
+  return (
+    <div className="relative grid grid-cols-3 border-b border-transparent [&_div]:p-2 [&_div]:text-right [&_div]:text-xs [&_div]:font-medium">
+      {type === 'bids' ? (
+        <>
+          <div>{row.total}</div>
+          <div>{row.qty}</div>
+          <div className="text-green-700">{row.price}</div>
+          <div
+            className="absolute left-0 top-0 size-full origin-right bg-green-700 opacity-25"
+            style={{
+              transform: `scaleX(${Number(row.total) / Number(maxTotal)})`,
+            }}
+          ></div>
+        </>
+      ) : (
+        <>
+          <div className="text-red-700">{row.price}</div>
+          <div>{row.qty}</div>
+          <div>{row.total}</div>
+          <div
+            className="absolute left-0 top-0 size-full origin-left bg-red-700 opacity-25"
+            style={{
+              transform: `scaleX(${Number(row.total) / Number(maxTotal)})`,
+            }}
+          ></div>
+        </>
+      )}
+    </div>
+  );
+}
+
+interface OrderBookTableSkeletonProps {
+  type: OrderBookTableRowProps['type'];
+}
+
+export function OrderBookTableSkeleton({ type }: OrderBookTableSkeletonProps) {
+  return (
+    <div className="grid grid-cols-3 border-b border-transparent [&_div]:p-2 [&_div]:flex [&_div]:justify-end">
+      {type === 'bids' ? (
+        <>
+          <div>
+            <Skeleton className="h-4 w-20" />
+          </div>
+          <div>
+            <Skeleton className="h-4 w-20" />
+          </div>
+          <div>
+            <Skeleton className="h-4 w-14" />
+          </div>
+        </>
+      ) : (
+        <>
+          <div>
+            <Skeleton className="h-4 w-14" />
+          </div>
+          <div>
+            <Skeleton className="h-4 w-20" />
+          </div>
+          <div>
+            <Skeleton className="h-4 w-20" />
+          </div>
+        </>
+      )}
     </div>
   );
 }
