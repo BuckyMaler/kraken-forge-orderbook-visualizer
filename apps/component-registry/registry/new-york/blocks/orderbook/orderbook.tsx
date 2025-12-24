@@ -10,6 +10,7 @@ import {
 } from '@/registry/new-york/blocks/orderbook/orderbook-table';
 import { Card, CardContent } from '@/registry/new-york/ui/card';
 
+// Replace with real data fetching logic
 const bookData = {
   asks: [
     { price: 87370.9, qty: 0.02130603, total: 0.02130603 },

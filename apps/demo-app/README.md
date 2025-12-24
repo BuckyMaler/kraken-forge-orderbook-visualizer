@@ -41,7 +41,7 @@ Level 2 (L2) order book data is streamed via the Kraken WebSocket API. `websocke
 
 - Skeleton loading states to improve perceived performance and UX
 
-- Only the latest 10 asks/bids per token are cached to prevent memory bloat
+- Time travel only caches the latest 500 order book states to prevent memory bloat
 
 - React Compiler is enabled for automatic memoization using `useMemo`, `useCallback`, and `React.memo`
 
@@ -55,8 +55,8 @@ Level 2 (L2) order book data is streamed via the Kraken WebSocket API. `websocke
 
 ### Running the App
 
-1. Run `pnpm install` to install all dependencies
+1. From the root of the repo, run `pnpm install` to install all dependencies
 
-2. Run `pnpm run dev` to start the development server
+2. From the app's directory, run `pnpm run dev` to start the development server
 
 3. Open [http://localhost:3000](http://localhost:3000) with your browser to see the result

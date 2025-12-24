@@ -1,23 +1,41 @@
-# registry-template
+# Kraken Forge Component Registry
 
-You can use the `shadcn` CLI to run your own component registry. Running your own
-component registry allows you to distribute your custom components, hooks, pages, and
-other files to any React project.
+[https://kraken-forge-component-registry.vercel.app](https://kraken-forge-component-registry.vercel.app)
 
-> [!IMPORTANT]  
-> This template uses Tailwind v4. For Tailwind v3, see [registry-template-v3](https://github.com/shadcn-ui/registry-template-v3).
+## About
 
-## Getting Started
+This is a custom component registry for distributing code using [shadcn](https://ui.shadcn.com/docs/registry).
 
-This is a template for creating a custom registry using Next.js.
+### Installation
 
-- The template uses a `registry.json` file to define components and their files.
-- The `shadcn build` command is used to build the registry.
-- The registry items are served as static files under `public/r/[name].json`.
-- The template also includes a route handler for serving registry items.
-- Every registry item are compatible with the `shadcn` CLI.
-- We have also added v0 integration using the `Open in v0` api.
+```
+npx shadcn@latest add https://kraken-forge-component-registry.vercel.app/r/orderbook.json
+```
 
-## Documentation
+### Usage
 
-Visit the [shadcn documentation](https://ui.shadcn.com/docs/registry) to view the full documentation.
+```ts
+import { OrderBook } from '@/components/orderbook';
+```
+
+```ts
+<OrderBook />
+```
+
+Replace the mock data in the block with real data fetching logic.
+
+## Development
+
+### Prerequisites
+
+- node 22.x
+
+- pnpm 10.x
+
+### Running the App
+
+1. From the root of the repo, run `pnpm install` to install all dependencies
+
+2. From the app's directory, run `pnpm run dev` to start the development server
+
+3. Open [http://localhost:3000](http://localhost:3000) with your browser to see the result

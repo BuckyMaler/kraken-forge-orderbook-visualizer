@@ -84,6 +84,8 @@ export function OrderBook({ bookPresent, symbol, token }: OrderBookProps) {
   );
 
   useEffect(() => {
+    // Setting state in this effect is safe because the state
+    // variables are not used in the dependency array.
     // eslint-disable-next-line react-hooks/set-state-in-effect
     setTimeTravelEnabled(false);
     setBookHistory([]);
@@ -92,6 +94,8 @@ export function OrderBook({ bookPresent, symbol, token }: OrderBookProps) {
 
   useEffect(() => {
     if (!timeTravelEnabled && bookPresent.snapshotReceived) {
+      // Setting state in this effect is safe because the state
+      // variables are not used in the dependency array.
       // eslint-disable-next-line react-hooks/set-state-in-effect
       setBookHistory((prev) => {
         const next = [...prev, bookPresent];
