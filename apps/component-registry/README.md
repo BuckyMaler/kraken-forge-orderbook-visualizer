@@ -2,6 +2,8 @@
 
 [https://kraken-forge-component-registry.vercel.app](https://kraken-forge-component-registry.vercel.app)
 
+https://github.com/user-attachments/assets/f93d79c5-23ac-4e50-8216-64aacfae78e8
+
 ## About
 
 This is a custom component registry for distributing code using [shadcn](https://ui.shadcn.com/docs/registry).

@@ -2,6 +2,8 @@
 
 [https://kraken-forge-demo-app.vercel.app](https://kraken-forge-demo-app.vercel.app)
 
+https://github.com/user-attachments/assets/9335d119-9e19-4ea4-8485-9b9c8e668605
+
 ## About
 
 This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app) and built with TypeScript, Redux Toolkit, shadcn/ui, Tailwind CSS, and the Kraken WebSocket API.
