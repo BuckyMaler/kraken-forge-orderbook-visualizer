@@ -23,17 +23,9 @@ This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-
   - Pairs well with shadcn/ui
 - 🐙 Kraken WebSocket API
 
-### Data Streaming
+### Architecture
 
-Level 2 (L2) order book data is streamed via the Kraken WebSocket API. `websocketMiddleware` is responsible for connecting/disconnecting the websocket connection and sending/receiving websocket messages. `orderbookMiddleware` is responsible for subscribing/unsubscribing to the `book` channel and handling `book` channel messages.
-
-**`book` channel subscribe flow**
-
-![book channel subscribe flow diagram](/apps/demo-app/public/book-channel-subscribe-flow.png)
-
-**`orderbook` state update flow**
-
-![orderbook state update flow diagram](/apps/demo-app/public/orderbook-state-update-flow.png)
+![Kraken Forge Demo App architecture](/apps/demo-app/public/kraken-forge-demo-app-architecture.png)
 
 ### Performance Optimizations
 
