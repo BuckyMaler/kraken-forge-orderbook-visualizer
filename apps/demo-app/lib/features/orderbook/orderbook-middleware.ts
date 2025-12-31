@@ -18,52 +18,35 @@ import {
 
 export const orderbookMiddleware: Middleware = (store) => {
   return (next) => (action) => {
-    // eslint-disable-next-line @typescript-eslint/ban-ts-comment
-    // @ts-ignore: `action` is of type `unknown`
-    switch (action.type) {
-      case subscribeOrderBook.type: {
-        const orderbookMessage = createOrderBookMessage(
-          SubscriptionMethod.SUBSCRIBE,
-          // eslint-disable-next-line @typescript-eslint/ban-ts-comment
-          // @ts-ignore: `action` is of type `unknown`
-          action.payload.symbol,
-        );
-        store.dispatch(sendWebSocketMessage(orderbookMessage));
-        break;
-      }
-      case unsubscribeOrderBook.type: {
-        const orderbookMessage = createOrderBookMessage(
-          SubscriptionMethod.UNSUBSCRIBE,
-          // eslint-disable-next-line @typescript-eslint/ban-ts-comment
-          // @ts-ignore: `action` is of type `unknown`
-          action.payload.symbol,
-        );
-        store.dispatch(sendWebSocketMessage(orderbookMessage));
-        break;
-      }
-      case receiveWebSocketMessage.type: {
-        // eslint-disable-next-line @typescript-eslint/ban-ts-comment
-        // @ts-ignore: `action` is of type `unknown`
-        const data = action.payload;
+    if (subscribeOrderBook.match(action)) {
+      const orderbookMessage = createOrderBookMessage(
+        SubscriptionMethod.SUBSCRIBE,
+        action.payload.symbol,
+      );
+      store.dispatch(sendWebSocketMessage(orderbookMessage));
+    } else if (unsubscribeOrderBook.match(action)) {
+      const orderbookMessage = createOrderBookMessage(
+        SubscriptionMethod.UNSUBSCRIBE,
+        action.payload.symbol,
+      );
+      store.dispatch(sendWebSocketMessage(orderbookMessage));
+    } else if (receiveWebSocketMessage.match(action)) {
+      const data = action.payload;
 
-        const ordersMessageResult = ordersMessageSchema.safeParse(data);
-        if (ordersMessageResult.success) {
-          store.dispatch(setOrders(ordersMessageResult.data));
-          break;
-        }
-
-        const subscriptionMessageResult =
-          subscriptionMessageSchema.safeParse(data);
-        if (subscriptionMessageResult.success) {
-          store.dispatch(
-            setOrderBookSubscriptionStatus(subscriptionMessageResult.data),
-          );
-          break;
-        }
-        break;
+      const ordersMessageResult = ordersMessageSchema.safeParse(data);
+      if (ordersMessageResult.success) {
+        store.dispatch(setOrders(ordersMessageResult.data));
+        return next(action);
       }
-      default:
-        break;
+
+      const subscriptionMessageResult =
+        subscriptionMessageSchema.safeParse(data);
+      if (subscriptionMessageResult.success) {
+        store.dispatch(
+          setOrderBookSubscriptionStatus(subscriptionMessageResult.data),
+        );
+        return next(action);
+      }
     }
     return next(action);
   };
