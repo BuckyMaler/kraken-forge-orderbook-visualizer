@@ -10,7 +10,8 @@ export default function Home() {
           Kraken Forge Component Registry
         </h1>
         <p className="text-muted-foreground">
-          A component registry for distributing code using shadcn.
+          A component registry for distributing a reusable order book component
+          using shadcn.
         </p>
       </header>
       <main className="flex flex-col flex-1 gap-8">

@@ -6,7 +6,7 @@ This is a Turbo powered monorepo with two Next.js apps. Refer to each app's `REA
 
 ### Apps
 
-| Name                                                                                                                    | Description                                                                                            |
-| ----------------------------------------------------------------------------------------------------------------------- | ------------------------------------------------------------------------------------------------------ |
-| [Demo App](https://github.com/BuckyMaler/kraken-forge-orderbook-visualizer/tree/main/apps/demo-app)                     | An order book visualizer that connects to Kraken's WebSocket API and allows time travel                |
-| [Component Registry](https://github.com/BuckyMaler/kraken-forge-orderbook-visualizer/tree/main/apps/component-registry) | A custom component registry for distributing code using [shadcn](https://ui.shadcn.com/docs/registry). |
+| Name                                                                                                                    | Description                                                                                                                      |
+| ----------------------------------------------------------------------------------------------------------------------- | -------------------------------------------------------------------------------------------------------------------------------- |
+| [Demo App](https://github.com/BuckyMaler/kraken-forge-orderbook-visualizer/tree/main/apps/demo-app)                     | An order book visualizer that connects to Kraken's WebSocket API and allows time travel                                          |
+| [Component Registry](https://github.com/BuckyMaler/kraken-forge-orderbook-visualizer/tree/main/apps/component-registry) | A custom component registry for distributing a reusable order book component using [shadcn](https://ui.shadcn.com/docs/registry) |
