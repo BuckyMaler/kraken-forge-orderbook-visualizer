@@ -1,5 +1,5 @@
 import * as React from 'react';
-// import { OpenInV0Button } from '@/components/open-in-v0-button';
+import { OpenInDemoAppButton } from '@/components/open-in-demo-app-button';
 import { OrderBook } from '@/registry/new-york/blocks/orderbook/orderbook';
 
 export default function Home() {
@@ -17,18 +17,39 @@ export default function Home() {
       <main className="flex flex-col flex-1 gap-8">
         <div className="flex flex-col gap-4 border rounded-lg p-4 min-h-[450px] relative">
           <div className="flex items-center justify-between">
-            <h2 className="text-sm text-muted-foreground sm:pl-3">
+            <h2 className="text-sm text-muted-foreground">
               A sleek order book component
             </h2>
-            {/* <OpenInV0Button name="orderbook" className="w-fit" /> */}
+            <OpenInDemoAppButton className="w-fit" />
           </div>
           <div className="flex items-center justify-center min-h-[400px] relative">
-            <div className="w-full max-w-2xl">
+            <div className="w-full">
               <OrderBook />
             </div>
           </div>
         </div>
       </main>
+      <footer className="text-center text-sm text-muted-foreground">
+        Built by{' '}
+        <a
+          href="https://x.com/BuckyMaler"
+          target="_blank"
+          rel="noreferrer"
+          className="font-medium underline underline-offset-4"
+        >
+          Bucky Maler
+        </a>
+        . The source code is available on{' '}
+        <a
+          href="https://github.com/BuckyMaler/kraken-forge-orderbook-visualizer"
+          target="_blank"
+          rel="noreferrer"
+          className="font-medium underline underline-offset-4"
+        >
+          GitHub
+        </a>
+        .
+      </footer>
     </div>
   );
 }

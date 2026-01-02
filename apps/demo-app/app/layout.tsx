@@ -31,7 +31,39 @@ export default function RootLayout({
       >
         <StoreProvider>
           <WebsocketProvider>
-            <main className="max-w-7xl mx-auto py-6 px-4">{children}</main>
+            <div className="flex flex-col min-h-svh max-w-5xl mx-auto gap-8 py-8 px-4">
+              <header className="flex flex-col gap-1">
+                <h1 className="text-3xl font-bold tracking-tight">
+                  Kraken Forge Demo App
+                </h1>
+                <p className="text-muted-foreground">
+                  A real-time order book visualizer that connects to
+                  Kraken&apos;s WebSocket API and allows time travel.
+                </p>
+              </header>
+              <main className="flex flex-col flex-1">{children}</main>
+              <footer className="text-center text-sm text-muted-foreground">
+                Built by{' '}
+                <a
+                  href="https://x.com/BuckyMaler"
+                  target="_blank"
+                  rel="noreferrer"
+                  className="font-medium underline underline-offset-4"
+                >
+                  Bucky Maler
+                </a>
+                . The source code is available on{' '}
+                <a
+                  href="https://github.com/BuckyMaler/kraken-forge-orderbook-visualizer"
+                  target="_blank"
+                  rel="noreferrer"
+                  className="font-medium underline underline-offset-4"
+                >
+                  GitHub
+                </a>
+                .
+              </footer>
+            </div>
           </WebsocketProvider>
         </StoreProvider>
       </body>
