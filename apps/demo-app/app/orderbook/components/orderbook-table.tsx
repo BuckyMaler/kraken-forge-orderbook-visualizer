@@ -8,29 +8,27 @@ interface OrderBookTableProps {
 export function OrderBookTable({ children, type }: OrderBookTableProps) {
   return (
     <div>
-      <div>
-        <div className="grid grid-cols-3 [&_div]:flex [&_div]:items-center [&_div]:justify-end [&_div]:h-10 [&_div]:px-2 [&_div]:text-xs [&_div]:font-medium [&_div]:uppercase [&_div]:text-gray-500">
-          {type === 'bids' ? (
-            <>
-              <div>Total</div>
-              <div>Quantity</div>
-              <div>Price</div>
-            </>
-          ) : (
-            <>
-              <div>Price</div>
-              <div>Quantity</div>
-              <div>Total</div>
-            </>
-          )}
-        </div>
+      <div className="grid grid-cols-3 [&_div]:flex [&_div]:items-center [&_div]:justify-end [&_div]:h-10 [&_div]:px-2 [&_div]:text-xs [&_div]:font-medium [&_div]:uppercase [&_div]:text-gray-500">
+        {type === 'bids' ? (
+          <>
+            <div>Total</div>
+            <div>Quantity</div>
+            <div>Price</div>
+          </>
+        ) : (
+          <>
+            <div>Price</div>
+            <div>Quantity</div>
+            <div>Total</div>
+          </>
+        )}
       </div>
       <div>{children}</div>
     </div>
   );
 }
 
-export interface OrderBookTableRowProps {
+interface OrderBookTableRowProps {
   row: { price: string; qty: string; total: string };
   type: 'bids' | 'asks';
   maxTotal: string;
