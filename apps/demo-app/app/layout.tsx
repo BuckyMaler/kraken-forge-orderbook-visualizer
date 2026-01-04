@@ -1,7 +1,7 @@
 import type { Metadata } from 'next';
 import { Geist, Geist_Mono } from 'next/font/google';
 import { StoreProvider } from '@/app/providers/store-provider';
-import { WebsocketProvider } from '@/app/providers/websocket-provider';
+import { WebSocketProvider } from '@/app/providers/websocket-provider';
 import './globals.css';
 
 const geistSans = Geist({
@@ -30,7 +30,7 @@ export default function RootLayout({
         className={`${geistSans.variable} ${geistMono.variable} antialiased`}
       >
         <StoreProvider>
-          <WebsocketProvider>
+          <WebSocketProvider>
             <div className="flex flex-col min-h-svh max-w-5xl mx-auto gap-8 py-8 px-4">
               <header className="flex flex-col gap-1">
                 <h1 className="text-3xl font-bold tracking-tight">
@@ -64,7 +64,7 @@ export default function RootLayout({
                 .
               </footer>
             </div>
-          </WebsocketProvider>
+          </WebSocketProvider>
         </StoreProvider>
       </body>
     </html>

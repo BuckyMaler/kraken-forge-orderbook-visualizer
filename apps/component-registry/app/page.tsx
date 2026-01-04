@@ -1,4 +1,3 @@
-import * as React from 'react';
 import { OpenInDemoAppButton } from '@/components/open-in-demo-app-button';
 import { OrderBook } from '@/registry/new-york/blocks/orderbook/orderbook';
 

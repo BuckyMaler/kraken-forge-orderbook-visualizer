@@ -1,8 +1,5 @@
-import {
-  type PayloadAction,
-  createSlice,
-  prepareAutoBatched,
-} from '@reduxjs/toolkit';
+import { createSlice, prepareAutoBatched } from '@reduxjs/toolkit';
+import type { PayloadAction } from '@reduxjs/toolkit';
 
 interface WebSocketState {
   status: 'uninstantiated' | 'connecting' | 'open' | 'closing' | 'closed';

@@ -9,11 +9,11 @@ import {
   sendWebSocketMessage,
 } from '@/lib/websocket/websocket-slice';
 
-interface WebsocketProviderProps {
+interface WebSocketProviderProps {
   readonly children: React.ReactNode;
 }
 
-export function WebsocketProvider({ children }: WebsocketProviderProps) {
+export function WebSocketProvider({ children }: WebSocketProviderProps) {
   const dispatch = useAppDispatch();
   const websocketStatus = useAppSelector(selectWebSocketStatus);
   const intervalRef = useRef<NodeJS.Timeout | null>(null);

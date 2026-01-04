@@ -1,8 +1,6 @@
 import { z } from 'zod';
-import {
-  SubscriptionMethod,
-  type SubscriptionMethodType,
-} from '@/lib/websocket/constants';
+import { SubscriptionMethod } from '@/lib/websocket/constants';
+import type { SubscriptionMethodType } from '@/lib/websocket/constants';
 
 const ORDERBOOK_CHANNEL = 'book';
 

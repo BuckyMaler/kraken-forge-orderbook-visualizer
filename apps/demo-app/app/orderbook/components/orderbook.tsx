@@ -13,8 +13,8 @@ import {
 } from '@/app/orderbook/components/orderbook-table';
 import { CustomSlider } from '@/components/custom-slider';
 import { Toggle } from '@/components/ui/toggle';
-import { type BookData } from '@/lib/features/orderbook/orderbook-slice';
-import { type Token } from '@/lib/features/tokens/tokens';
+import type { BookData } from '@/lib/features/orderbook/orderbook-slice';
+import type { Token } from '@/lib/features/tokens/tokens';
 
 const MAX_HISTORY_LENGTH = 500;
 

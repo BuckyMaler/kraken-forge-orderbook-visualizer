@@ -1,8 +1,5 @@
-import {
-  type PayloadAction,
-  createSlice,
-  prepareAutoBatched,
-} from '@reduxjs/toolkit';
+import { createSlice, prepareAutoBatched } from '@reduxjs/toolkit';
+import type { PayloadAction } from '@reduxjs/toolkit';
 import type {
   Order,
   OrdersMessage,
@@ -11,8 +8,8 @@ import type {
 import {
   SubscriptionMethod,
   SubscriptionStatus,
-  type SubscriptionStatusType,
 } from '@/lib/websocket/constants';
+import type { SubscriptionStatusType } from '@/lib/websocket/constants';
 
 export interface BookData {
   asks: Array<Order & { total: number }>;
@@ -86,16 +83,13 @@ export const orderbookSlice = createSlice({
           bookState.snapshotReceived = true;
         }
 
-        const prevAsks = bookState.asks;
-        const prevBids = bookState.bids;
-
         const asks = prepareOrders(
-          prevAsks,
+          bookState.asks,
           bookItem.asks,
           (a, b) => a.price - b.price,
         );
         const bids = prepareOrders(
-          prevBids,
+          bookState.bids,
           bookItem.bids,
           (a, b) => b.price - a.price,
         );
@@ -121,7 +115,9 @@ function prepareOrders(
   const map = new Map<number, Order>();
 
   for (const order of prevOrders) {
-    if (order.qty !== 0) map.set(order.price, order);
+    if (order.qty !== 0) {
+      map.set(order.price, order);
+    }
   }
 
   for (const order of incomingOrders) {
