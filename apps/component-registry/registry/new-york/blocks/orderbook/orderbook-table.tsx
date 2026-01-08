@@ -1,69 +1,102 @@
-interface OrderBookTableProps {
-  readonly children: React.ReactNode;
-  type: OrderBookTableRowProps['type'];
+import { cva, VariantProps } from 'class-variance-authority';
+import { cn } from '@/lib/utils';
+
+export function OrderBookTable({
+  className,
+  ...props
+}: React.ComponentProps<'div'>) {
+  return <div className={className} {...props} />;
 }
 
-export function OrderBookTable({ children, type }: OrderBookTableProps) {
-  return (
-    <div>
-      <div className="grid grid-cols-3 [&_div]:flex [&_div]:items-center [&_div]:justify-end [&_div]:h-10 [&_div]:px-2 [&_div]:text-xs [&_div]:font-medium [&_div]:uppercase [&_div]:text-gray-500">
-        {type === 'bids' ? (
-          <>
-            <div>Total</div>
-            <div>Quantity</div>
-            <div>Price</div>
-          </>
-        ) : (
-          <>
-            <div>Price</div>
-            <div>Quantity</div>
-            <div>Total</div>
-          </>
-        )}
-      </div>
-      <div>{children}</div>
-    </div>
-  );
-}
-
-interface OrderBookTableRowProps {
-  row: { price: number; qty: number; total: number };
-  type: 'bids' | 'asks';
-  maxTotal: number;
+export function OrderBookTableHeader({
+  className,
+  ...props
+}: React.ComponentProps<'div'>) {
+  return <div className={className} {...props} />;
 }
 
 export function OrderBookTableRow({
-  row,
-  type,
-  maxTotal,
-}: OrderBookTableRowProps) {
+  className,
+  ...props
+}: React.ComponentProps<'div'>) {
+  return <div className={cn('relative flex', className)} {...props} />;
+}
+
+export function OrderBookTableHead({
+  className,
+  ...props
+}: React.ComponentProps<'div'>) {
   return (
-    <div className="relative grid grid-cols-3 border-b border-transparent [&_div]:p-2 [&_div]:text-right [&_div]:text-xs [&_div]:font-medium">
-      {type === 'bids' ? (
-        <>
-          <div>{row.total}</div>
-          <div>{row.qty}</div>
-          <div className="text-green-700">{row.price}</div>
-          <div
-            className="absolute left-0 top-0 size-full origin-right bg-green-700 opacity-25"
-            style={{
-              transform: `scaleX(${row.total / maxTotal})`,
-            }}
-          ></div>
-        </>
-      ) : (
-        <>
-          <div className="text-red-700">{row.price}</div>
-          <div>{row.qty}</div>
-          <div>{row.total}</div>
-          <div
-            className="absolute left-0 top-0 size-full origin-left bg-red-700 opacity-25"
-            style={{
-              transform: `scaleX(${row.total / maxTotal})`,
-            }}
-          ></div>
-        </>
+    <div
+      className={cn(
+        'flex items-center h-10 w-1/2 px-2 text-xs font-medium uppercase text-gray-500',
+        className,
       )}
-    </div>
+      {...props}
+    />
+  );
+}
+
+export function OrderBookTableBody({
+  className,
+  ...props
+}: React.ComponentProps<'div'>) {
+  return <div className={className} {...props} />;
+}
+
+const orderBookTableCellVariants = cva('w-1/2 p-2 text-xs font-medium', {
+  variants: {
+    variant: {
+      ask: 'text-red-700',
+      bid: 'text-green-700',
+    },
+  },
+});
+
+export function OrderBookTableCell({
+  variant,
+  className,
+  ...props
+}: React.ComponentProps<'div'> &
+  VariantProps<typeof orderBookTableCellVariants>) {
+  return (
+    <div
+      className={cn(orderBookTableCellVariants({ variant, className }))}
+      {...props}
+    />
+  );
+}
+
+const orderBookTableDepthVariantsSchema = {
+  variants: {
+    variant: {
+      ask: 'bg-red-700',
+      bid: 'bg-green-700',
+    },
+  },
+};
+
+const orderBookTableDepthVariants = cva(
+  'absolute left-0 top-0 size-full origin-left opacity-25',
+  orderBookTableDepthVariantsSchema,
+);
+
+interface OrderBookTableDepthProps {
+  depth: number;
+  variant: keyof typeof orderBookTableDepthVariantsSchema.variants.variant;
+}
+
+export function OrderBookTableDepth({
+  depth,
+  variant,
+  className,
+  ...props
+}: React.ComponentProps<'div'> & OrderBookTableDepthProps) {
+  return (
+    <div
+      className={cn(orderBookTableDepthVariants({ variant, className }))}
+      style={{ transform: `scaleX(${depth})` }}
+      {...props}
+    />
   );
 }

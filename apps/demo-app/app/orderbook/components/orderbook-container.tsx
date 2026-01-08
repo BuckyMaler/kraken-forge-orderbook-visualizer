@@ -1,21 +1,10 @@
 'use client';
 
-import { HistoryIcon } from 'lucide-react';
 import { useEffect, useRef } from 'react';
 import { useSearchParams } from 'next/navigation';
 import { OrderBook } from '@/app/orderbook/components/orderbook';
-import {
-  OrderBookTable,
-  OrderBookTableSkeleton,
-} from '@/app/orderbook/components/orderbook-table';
-import {
-  OrderBookSpread,
-  OrderBookSpreadContent,
-} from '@/app/orderbook/components/orderbook-spread';
-import { CustomSlider } from '@/components/custom-slider';
+import { OrderBookSkeleton } from '@/app/orderbook/components/orderbook-skeleton';
 import { Card, CardContent } from '@/components/ui/card';
-import { Skeleton } from '@/components/ui/skeleton';
-import { Toggle } from '@/components/ui/toggle';
 import {
   selectOrderBookBySymbol,
   subscribeOrderBook,
@@ -65,44 +54,7 @@ export function OrderBookContainer() {
     return (
       <Card>
         <CardContent className="px-0">
-          <OrderBookSpread>
-            <OrderBookSpreadContent>
-              <span className="font-normal">Spread:</span>
-              <Skeleton className="h-4 w-20" />
-            </OrderBookSpreadContent>
-          </OrderBookSpread>
-          <div className="grid grid-cols-2">
-            <OrderBookTable type="bids">
-              {Array.from({ length: 10 }).map((_, index) => (
-                <OrderBookTableSkeleton key={index} type="bids" />
-              ))}
-            </OrderBookTable>
-            <OrderBookTable type="asks">
-              {Array.from({ length: 10 }).map((_, index) => (
-                <OrderBookTableSkeleton key={index} type="asks" />
-              ))}
-            </OrderBookTable>
-          </div>
-          <div className="flex items-center gap-x-4 mt-4 px-2">
-            <div>
-              <Toggle
-                aria-label="Toggle time travel"
-                size="sm"
-                variant="outline"
-                disabled={true}
-              >
-                <HistoryIcon />
-                Time Travel
-              </Toggle>
-            </div>
-            <CustomSlider
-              value={[0]}
-              max={0}
-              step={1}
-              disabled={true}
-              thumbTooltipContent=""
-            />
-          </div>
+          <OrderBookSkeleton />
         </CardContent>
       </Card>
     );

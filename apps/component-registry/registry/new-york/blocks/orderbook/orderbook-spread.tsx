@@ -1,19 +1,26 @@
 import { Item, ItemTitle } from '@/registry/new-york/ui/item';
+import { cn } from '@/lib/utils';
 
-interface OrderBookSpreadProps {
-  readonly children: React.ReactNode;
-}
-
-export function OrderBookSpread({ children }: OrderBookSpreadProps) {
-  return <Item className="justify-center p-0">{children}</Item>;
-}
-
-interface OrderBookSpreadContentProps {
-  readonly children: React.ReactNode;
+export function OrderBookSpread({
+  className,
+  ...props
+}: React.ComponentProps<typeof Item>) {
+  return (
+    <Item
+      className={cn(
+        'justify-center w-full py-1 px-0 rounded-none bg-muted',
+        className,
+      )}
+      {...props}
+    />
+  );
 }
 
 export function OrderBookSpreadContent({
-  children,
-}: OrderBookSpreadContentProps) {
-  return <ItemTitle className="text-xs text-gray-600">{children}</ItemTitle>;
+  className,
+  ...props
+}: React.ComponentProps<typeof ItemTitle>) {
+  return (
+    <ItemTitle className={cn('text-xs text-gray-600', className)} {...props} />
+  );
 }

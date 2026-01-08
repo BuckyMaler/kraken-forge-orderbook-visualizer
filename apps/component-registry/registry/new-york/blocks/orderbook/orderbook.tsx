@@ -6,6 +6,11 @@ import {
 } from '@/registry/new-york/blocks/orderbook/orderbook-spread';
 import {
   OrderBookTable,
+  OrderBookTableBody,
+  OrderBookTableCell,
+  OrderBookTableDepth,
+  OrderBookTableHead,
+  OrderBookTableHeader,
   OrderBookTableRow,
 } from '@/registry/new-york/blocks/orderbook/orderbook-table';
 import { Card, CardContent } from '@/registry/new-york/ui/card';
@@ -47,32 +52,99 @@ export function OrderBook() {
   return (
     <Card>
       <CardContent className="px-0">
-        <OrderBookSpread>
-          <OrderBookSpreadContent>
-            <span className="font-normal">Spread:</span> {spread.toFixed(1)} (
-            {relativeSpread.toFixed(4)}%)
-          </OrderBookSpreadContent>
-        </OrderBookSpread>
-        <div className="grid grid-cols-2">
-          <OrderBookTable type="bids">
-            {bookData.bids.map((bid, index) => (
-              <OrderBookTableRow
-                key={index}
-                row={bid}
-                type="bids"
-                maxTotal={bookData.bids[bookData.bids.length - 1].total}
-              />
-            ))}
+        <div className="lg:flex lg:flex-wrap">
+          <OrderBookTable className="lg:order-3 lg:w-1/2">
+            <OrderBookTableHeader>
+              <OrderBookTableRow>
+                <OrderBookTableHead className="lg:justify-end">
+                  Price
+                </OrderBookTableHead>
+                <OrderBookTableHead className="lg:justify-end">
+                  Quantity
+                </OrderBookTableHead>
+                <OrderBookTableHead className="hidden sm:flex lg:justify-end">
+                  Total
+                </OrderBookTableHead>
+              </OrderBookTableRow>
+            </OrderBookTableHeader>
+            <OrderBookTableBody className="flex flex-col-reverse lg:flex-col">
+              {bookData.asks.map((ask, index) => (
+                <OrderBookTableRow
+                  key={index}
+                  className="border-b border-transparent"
+                >
+                  <OrderBookTableCell
+                    variant="ask"
+                    className="lg:flex lg:justify-end"
+                  >
+                    {ask.price}
+                  </OrderBookTableCell>
+                  <OrderBookTableCell className="lg:flex lg:justify-end">
+                    {ask.qty}
+                  </OrderBookTableCell>
+                  <OrderBookTableCell className="hidden sm:flex lg:justify-end">
+                    {ask.total}
+                  </OrderBookTableCell>
+                  <OrderBookTableDepth
+                    depth={
+                      bookData.asks[index].total /
+                      bookData.asks[bookData.asks.length - 1].total
+                    }
+                    variant="ask"
+                  />
+                </OrderBookTableRow>
+              ))}
+            </OrderBookTableBody>
           </OrderBookTable>
-          <OrderBookTable type="asks">
-            {bookData.asks.map((ask, index) => (
-              <OrderBookTableRow
-                key={index}
-                row={ask}
-                type="asks"
-                maxTotal={bookData.asks[bookData.asks.length - 1].total}
-              />
-            ))}
+          <OrderBookSpread className="lg:order-1 lg:py-0 lg:bg-background">
+            <OrderBookSpreadContent>
+              <span className="font-normal">Spread:</span> {spread.toFixed(1)} (
+              {relativeSpread.toFixed(4)}%)
+            </OrderBookSpreadContent>
+          </OrderBookSpread>
+          <OrderBookTable className="lg:order-2 lg:w-1/2">
+            <OrderBookTableHeader className="hidden lg:block">
+              <OrderBookTableRow className="lg:flex-row-reverse">
+                <OrderBookTableHead className="lg:justify-end">
+                  Price
+                </OrderBookTableHead>
+                <OrderBookTableHead className="lg:justify-end">
+                  Quantity
+                </OrderBookTableHead>
+                <OrderBookTableHead className="lg:justify-end">
+                  Total
+                </OrderBookTableHead>
+              </OrderBookTableRow>
+            </OrderBookTableHeader>
+            <OrderBookTableBody>
+              {bookData.bids.map((bid, index) => (
+                <OrderBookTableRow
+                  key={index}
+                  className="border-b border-transparent lg:flex-row-reverse"
+                >
+                  <OrderBookTableCell
+                    variant="bid"
+                    className="lg:flex lg:justify-end"
+                  >
+                    {bid.price}
+                  </OrderBookTableCell>
+                  <OrderBookTableCell className="lg:flex lg:justify-end">
+                    {bid.qty}
+                  </OrderBookTableCell>
+                  <OrderBookTableCell className="hidden sm:flex lg:justify-end">
+                    {bid.total}
+                  </OrderBookTableCell>
+                  <OrderBookTableDepth
+                    depth={
+                      bookData.bids[index].total /
+                      bookData.bids[bookData.bids.length - 1].total
+                    }
+                    variant="bid"
+                    className="lg:origin-right"
+                  />
+                </OrderBookTableRow>
+              ))}
+            </OrderBookTableBody>
           </OrderBookTable>
         </div>
       </CardContent>
