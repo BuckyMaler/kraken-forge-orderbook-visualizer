@@ -169,7 +169,7 @@ export function OrderBook({ bookPresent, symbol, token }: OrderBookProps) {
             ))}
           </OrderBookTableBody>
         </OrderBookTable>
-        <OrderBookSpread className="lg:order-1 lg:py-0 lg:bg-background">
+        <OrderBookSpread className="lg:order-1 lg:py-0 lg:bg-card">
           <OrderBookSpreadContent>
             <span className="font-normal">Spread:</span> {formattedSpread} (
             {formattedRelativeSpread})

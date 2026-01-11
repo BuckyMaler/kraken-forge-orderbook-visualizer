@@ -29,7 +29,7 @@ export function OrderBookTableHead({
   return (
     <div
       className={cn(
-        'flex items-center h-10 w-1/2 px-2 text-xs font-medium uppercase text-gray-500',
+        'flex items-center h-10 w-1/2 px-2 text-xs font-medium uppercase text-muted-foreground/90',
         className,
       )}
       {...props}
@@ -47,8 +47,8 @@ export function OrderBookTableBody({
 const orderBookTableCellVariants = cva('w-1/2 p-2 text-xs font-medium', {
   variants: {
     variant: {
-      ask: 'text-red-700',
-      bid: 'text-green-700',
+      ask: 'text-red-700 dark:text-red-500',
+      bid: 'text-green-700 dark:text-green-500',
     },
   },
 });
@@ -70,8 +70,8 @@ export function OrderBookTableCell({
 const orderBookTableDepthVariantsSchema = {
   variants: {
     variant: {
-      ask: 'bg-red-700',
-      bid: 'bg-green-700',
+      ask: 'bg-red-700 dark:bg-red-500',
+      bid: 'bg-green-700 dark:bg-green-500',
     },
   },
 };

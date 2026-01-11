@@ -7,10 +7,8 @@ export function OrderBookSpread({
 }: React.ComponentProps<typeof Item>) {
   return (
     <Item
-      className={cn(
-        'justify-center w-full py-1 px-0 rounded-none bg-muted',
-        className,
-      )}
+      variant="muted"
+      className={cn('justify-center w-full py-1 px-0 rounded-none', className)}
       {...props}
     />
   );
@@ -21,6 +19,9 @@ export function OrderBookSpreadContent({
   ...props
 }: React.ComponentProps<typeof ItemTitle>) {
   return (
-    <ItemTitle className={cn('text-xs text-gray-600', className)} {...props} />
+    <ItemTitle
+      className={cn('text-xs text-muted-foreground', className)}
+      {...props}
+    />
   );
 }

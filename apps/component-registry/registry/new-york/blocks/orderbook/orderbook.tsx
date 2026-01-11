@@ -96,7 +96,7 @@ export function OrderBook() {
               ))}
             </OrderBookTableBody>
           </OrderBookTable>
-          <OrderBookSpread className="lg:order-1 lg:py-0 lg:bg-background">
+          <OrderBookSpread className="lg:order-1 lg:py-0 lg:bg-card">
             <OrderBookSpreadContent>
               <span className="font-normal">Spread:</span> {spread.toFixed(1)} (
               {relativeSpread.toFixed(4)}%)

@@ -55,7 +55,7 @@ export function OrderBookSkeleton() {
             ))}
           </OrderBookTableBody>
         </OrderBookTable>
-        <OrderBookSpread className="lg:order-1 lg:py-0 lg:bg-background">
+        <OrderBookSpread className="lg:order-1 lg:py-0 lg:bg-card">
           <OrderBookSpreadContent>
             <span className="font-normal">Spread:</span>
             <Skeleton className="h-4 w-20" />

@@ -38,7 +38,7 @@ export function SymbolSelect() {
               </Avatar>
               <div className="font-medium">
                 <span>{ticker}</span>
-                <span className="text-gray-600">/{market}</span>
+                <span className="text-muted-foreground">/{market}</span>
               </div>
             </SelectItem>
           );
