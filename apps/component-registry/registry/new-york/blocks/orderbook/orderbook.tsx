@@ -51,23 +51,23 @@ export function OrderBook() {
 
   return (
     <Card>
-      <CardContent className="px-0">
-        <div className="lg:flex lg:flex-wrap">
-          <OrderBookTable className="lg:order-3 lg:w-1/2">
+      <CardContent className="px-0 @container">
+        <div className="@4xl:flex @4xl:flex-wrap">
+          <OrderBookTable className="@4xl:order-3 @4xl:w-1/2">
             <OrderBookTableHeader>
               <OrderBookTableRow>
-                <OrderBookTableHead className="lg:justify-end">
+                <OrderBookTableHead className="@4xl:justify-end">
                   Price
                 </OrderBookTableHead>
-                <OrderBookTableHead className="lg:justify-end">
+                <OrderBookTableHead className="@4xl:justify-end">
                   Quantity
                 </OrderBookTableHead>
-                <OrderBookTableHead className="hidden sm:flex lg:justify-end">
+                <OrderBookTableHead className="hidden @lg:flex @4xl:justify-end">
                   Total
                 </OrderBookTableHead>
               </OrderBookTableRow>
             </OrderBookTableHeader>
-            <OrderBookTableBody className="flex flex-col-reverse lg:flex-col">
+            <OrderBookTableBody className="flex flex-col-reverse @4xl:flex-col">
               {bookData.asks.map((ask, index) => (
                 <OrderBookTableRow
                   key={index}
@@ -75,14 +75,14 @@ export function OrderBook() {
                 >
                   <OrderBookTableCell
                     variant="ask"
-                    className="lg:flex lg:justify-end"
+                    className="@4xl:flex @4xl:justify-end"
                   >
                     {ask.price}
                   </OrderBookTableCell>
-                  <OrderBookTableCell className="lg:flex lg:justify-end">
+                  <OrderBookTableCell className="@4xl:flex @4xl:justify-end">
                     {ask.qty}
                   </OrderBookTableCell>
-                  <OrderBookTableCell className="hidden sm:flex lg:justify-end">
+                  <OrderBookTableCell className="hidden @lg:flex @4xl:justify-end">
                     {ask.total}
                   </OrderBookTableCell>
                   <OrderBookTableDepth
@@ -96,22 +96,22 @@ export function OrderBook() {
               ))}
             </OrderBookTableBody>
           </OrderBookTable>
-          <OrderBookSpread className="lg:order-1 lg:py-0 lg:bg-card">
+          <OrderBookSpread className="@4xl:order-1 @4xl:py-0 @4xl:bg-card">
             <OrderBookSpreadContent>
               <span className="font-normal">Spread:</span> {spread.toFixed(1)} (
               {relativeSpread.toFixed(4)}%)
             </OrderBookSpreadContent>
           </OrderBookSpread>
-          <OrderBookTable className="lg:order-2 lg:w-1/2">
-            <OrderBookTableHeader className="hidden lg:block">
-              <OrderBookTableRow className="lg:flex-row-reverse">
-                <OrderBookTableHead className="lg:justify-end">
+          <OrderBookTable className="@4xl:order-2 @4xl:w-1/2">
+            <OrderBookTableHeader className="hidden @4xl:block">
+              <OrderBookTableRow className="@4xl:flex-row-reverse">
+                <OrderBookTableHead className="@4xl:justify-end">
                   Price
                 </OrderBookTableHead>
-                <OrderBookTableHead className="lg:justify-end">
+                <OrderBookTableHead className="@4xl:justify-end">
                   Quantity
                 </OrderBookTableHead>
-                <OrderBookTableHead className="lg:justify-end">
+                <OrderBookTableHead className="@4xl:justify-end">
                   Total
                 </OrderBookTableHead>
               </OrderBookTableRow>
@@ -120,18 +120,18 @@ export function OrderBook() {
               {bookData.bids.map((bid, index) => (
                 <OrderBookTableRow
                   key={index}
-                  className="border-b border-transparent lg:flex-row-reverse"
+                  className="border-b border-transparent @4xl:flex-row-reverse"
                 >
                   <OrderBookTableCell
                     variant="bid"
-                    className="lg:flex lg:justify-end"
+                    className="@4xl:flex @4xl:justify-end"
                   >
                     {bid.price}
                   </OrderBookTableCell>
-                  <OrderBookTableCell className="lg:flex lg:justify-end">
+                  <OrderBookTableCell className="@4xl:flex @4xl:justify-end">
                     {bid.qty}
                   </OrderBookTableCell>
-                  <OrderBookTableCell className="hidden sm:flex lg:justify-end">
+                  <OrderBookTableCell className="hidden @lg:flex @4xl:justify-end">
                     {bid.total}
                   </OrderBookTableCell>
                   <OrderBookTableDepth
@@ -140,7 +140,7 @@ export function OrderBook() {
                       bookData.bids[bookData.bids.length - 1].total
                     }
                     variant="bid"
-                    className="lg:origin-right"
+                    className="@4xl:origin-right"
                   />
                 </OrderBookTableRow>
               ))}

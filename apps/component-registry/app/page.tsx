@@ -8,7 +8,7 @@ export default function Home() {
       <div className="fixed top-4 right-4 z-50">
         <ThemeToggle />
       </div>
-      <div className="max-w-3xl mx-auto flex flex-col min-h-svh px-4 py-8 gap-8">
+      <div className="max-w-5xl mx-auto flex flex-col min-h-svh px-4 py-8 gap-8">
         <header className="flex flex-col gap-1">
           <h1 className="text-3xl font-bold tracking-tight">
             Kraken Forge Component Registry
