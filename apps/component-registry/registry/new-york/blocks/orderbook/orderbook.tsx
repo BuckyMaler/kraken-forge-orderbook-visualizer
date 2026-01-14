@@ -50,7 +50,7 @@ export function OrderBook() {
   const relativeSpread = (spread / lowestAsk) * 100;
 
   return (
-    <Card>
+    <Card className="w-full">
       <CardContent className="px-0 @container">
         <div className="@4xl:flex @4xl:flex-wrap">
           <OrderBookTable className="@4xl:order-3 @4xl:w-1/2">
