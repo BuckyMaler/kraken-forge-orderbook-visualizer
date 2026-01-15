@@ -8,6 +8,12 @@ https://github.com/user-attachments/assets/f93d79c5-23ac-4e50-8216-64aacfae78e8
 
 This is a custom component registry for distributing a reusable order book component using [shadcn](https://ui.shadcn.com/docs/registry).
 
+- 🎨 Maximum flexibility through component composition, `className` props, and direct access to component code
+- 📱 Mobile-first design using container queries
+- 🌙 Dark mode support because it's not production ready without it
+- 🤖 AI ready - with direct access to the code LLMs can read, understand, and even improve your components
+- 🚀 Easily install components in your project with a single CLI command
+
 ### Installation
 
 ```
