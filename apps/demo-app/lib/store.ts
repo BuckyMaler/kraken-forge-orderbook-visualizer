@@ -7,7 +7,7 @@ import { websocketSlice } from '@/lib/websocket/websocket-slice';
 
 const rootReducer = combineSlices(websocketSlice, orderbookSlice);
 
-const throttledNotify = throttle((notify: () => void) => notify(), 300);
+const throttledNotify = throttle((notify: () => void) => notify(), 500);
 
 export const makeStore = () => {
   return configureStore({
@@ -17,7 +17,7 @@ export const makeStore = () => {
     enhancers: (getDefaultEnhancers) =>
       getDefaultEnhancers({
         // This configures RTK's `autoBatchEnhancer` to throttle subscription
-        // notifications by 300ms, which effectively batches React updates, to
+        // notifications by 500ms, which effectively batches React updates, to
         // improve performance when many actions are dispatched in a short time.
         // Only actions with the `action.meta[SHOULD_AUTOBATCH]` field, which can
         // be added using the `prepareAutoBatched` utility, will be throttled.
