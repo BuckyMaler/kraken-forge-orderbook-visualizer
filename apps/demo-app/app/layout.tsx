@@ -1,8 +1,12 @@
+import { ExternalLinkIcon, GithubIcon } from 'lucide-react';
 import type { Metadata } from 'next';
 import { Geist, Geist_Mono } from 'next/font/google';
+import Link from 'next/link';
 import { StoreProvider } from '@/app/providers/store-provider';
 import { ThemeProvider } from '@/app/providers/theme-provider';
 import { WebSocketProvider } from '@/app/providers/websocket-provider';
+import { ThemeToggle } from '@/components/theme-toggle';
+import { Button } from '@/components/ui/button';
 import './globals.css';
 
 const geistSans = Geist({
@@ -38,18 +42,37 @@ export default function RootLayout({
         >
           <StoreProvider>
             <WebSocketProvider>
-              <div className="flex flex-col min-h-svh max-w-5xl mx-auto gap-8 py-8 px-4">
-                <header className="flex flex-col gap-1">
-                  <h1 className="text-3xl font-bold tracking-tight">
-                    Kraken Forge Demo App
-                  </h1>
-                  <p className="text-muted-foreground">
-                    A real-time order book visualizer that connects to
-                    Kraken&apos;s WebSocket API and allows time travel.
-                  </p>
+              <div className="flex flex-col min-h-svh">
+                <header className="sticky top-0 left-0 z-50 flex justify-between gap-x-4 w-full p-4 bg-background">
+                  <Link href="/">
+                    <span className="text-3xl">🐙</span>
+                  </Link>
+                  <div className="flex flex-wrap justify-end gap-2">
+                    <Button variant="outline" asChild>
+                      <a
+                        href="https://kraken-forge-component-registry.vercel.app"
+                        target="_blank"
+                        rel="noreferrer"
+                      >
+                        <ExternalLinkIcon /> Component Registry
+                      </a>
+                    </Button>
+                    <Button variant="outline" asChild>
+                      <a
+                        href="https://github.com/BuckyMaler/kraken-forge-orderbook-visualizer"
+                        target="_blank"
+                        rel="noreferrer"
+                      >
+                        <GithubIcon /> GitHub
+                      </a>
+                    </Button>
+                    <ThemeToggle />
+                  </div>
                 </header>
-                <main className="flex flex-col flex-1">{children}</main>
-                <footer className="text-center text-sm text-muted-foreground">
+                <main className="flex flex-col flex-1 w-full max-w-5xl mx-auto p-4">
+                  {children}
+                </main>
+                <footer className="p-4 text-center text-sm text-muted-foreground">
                   Built by{' '}
                   <a
                     href="https://x.com/BuckyMaler"
